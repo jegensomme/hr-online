@@ -1,23 +1,35 @@
 package com.techspirit.casein.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
+//@Entity
+//@Table(name = "users")
 @Getter
 @Setter
-@Table(name = "user")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@ToString(callSuper = true, exclude = {"link"})
+public class User extends BaseEntity {
 
-    String name;
-    String avatar;
-    Integer progress;
-    String password;
+    private String name;
+
+    private String email;
+
+    private String link;
+
+    private Photo photo;
+
+    private LocalDateTime registered;
+
+    private List<Position> positions;
+
+    private List<Progress> progresses;
 }
