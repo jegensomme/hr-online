@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS dialogs;
 DROP TABLE IF EXISTS page_elements;
 DROP TABLE IF EXISTS quest_progresses;
-DROP TABLE IF EXISTS progresses;
+DROP TABLE IF EXISTS course_progresses;
 DROP TABLE IF EXISTS pages;
 DROP TABLE IF EXISTS course_quests;
 DROP TABLE IF EXISTS user_positions;
@@ -39,16 +39,16 @@ CREATE TABLE users
     email       VARCHAR                 NOT NULL,
     link        TEXT                    NOT NULL,
     registered  TIMESTAMP DEFAULT now() NOT NULL,
-    CONSTRAINT users_unique_email_idx UNIQUE (email)
+    CONSTRAINT users_unique_email_idx UNIQUE (email),
+    CONSTRAINT users_unique_link_idx UNIQUE (link)
 );
 
 CREATE TABLE photos
 (
-    user_id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     title   TEXT,
     value   BYTEA NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    CONSTRAINT photos_unique_idx UNIQUE (user_id)
+    FOREIGN KEY (id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_positions
@@ -87,18 +87,15 @@ CREATE TABLE page_elements
 CREATE TABLE dialogs
 (
     id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    page_element_id INTEGER            NOT NULL,
-    with_action     BOOL DEFAULT FALSE NOT NULL,
-    FOREIGN KEY (page_element_id) REFERENCES page_elements (id) ON DELETE CASCADE,
-    CONSTRAINT dialogs_unique_idx UNIQUE (page_element_id)
+    with_action     BOOL    DEFAULT FALSE NOT NULL,
+    "order"         INTEGER DEFAULT 0     NOT NULL,
+    FOREIGN KEY (id) REFERENCES page_elements (id) ON DELETE CASCADE
 );
 
 CREATE TABLE questions
 (
     id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    page_element_id INTEGER NOT NULL,
-    FOREIGN KEY (page_element_id) REFERENCES page_elements (id) ON DELETE CASCADE,
-    CONSTRAINT questions_unique_idx UNIQUE (page_element_id)
+    FOREIGN KEY (id) REFERENCES page_elements (id) ON DELETE CASCADE
 );
 
 CREATE TABLE answers
@@ -120,7 +117,7 @@ CREATE TABLE course_quests
     CONSTRAINT course_quests_unique_idx UNIQUE (course_id, quest_id)
 );
 
-CREATE TABLE progresses
+CREATE TABLE course_progresses
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id          INTEGER            NOT NULL,
@@ -136,14 +133,14 @@ CREATE TABLE progresses
 CREATE TABLE quest_progresses
 (
     id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    progress_id     INTEGER         NOT NULL,
+    course_progress_id     INTEGER         NOT NULL,
     quest_id        INTEGER         NOT NULL,
     current_page_id INTEGER,
-    value        SMALLINT DEFAULT 0 NOT NULL CHECK ( value >= 0 AND value <= 100 ),
-    FOREIGN KEY (progress_id)     REFERENCES progresses (id) ON DELETE CASCADE,
+    value           SMALLINT DEFAULT 0 NOT NULL CHECK ( value >= 0 AND value <= 100 ),
+    FOREIGN KEY (course_progress_id)     REFERENCES course_progresses (id) ON DELETE CASCADE,
     FOREIGN KEY (quest_id)        REFERENCES quests     (id) ON DELETE CASCADE,
     FOREIGN KEY (current_page_id) REFERENCES pages      (id) ON DELETE SET NULL,
-    CONSTRAINT quest_progresses_unique_idx UNIQUE (progress_id, quest_id)
+    CONSTRAINT quest_progresses_unique_idx UNIQUE (course_progress_id, quest_id)
 );
 
 

@@ -7,33 +7,39 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Table(name = "quest_progresses")
+@Table(name = "course_progresses")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class QuestProgress extends BaseEntity {
+public class CourseProgress extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_progress_id")
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private CourseProgress courseProgress;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "quest_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
-    private Quest quest;
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "current_page_id")
-    private Page currentPage;
+    @JoinColumn(name = "course_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @NotNull
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "current_quest_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Quest currentQuest;
 
     @Column(name = "value")
     @Range(min = 0, max = 100)
     private int value;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "progress")
+    private List<QuestProgress> questProgresses;
+
 }

@@ -2,25 +2,28 @@ package com.techspirit.casein.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-//@Entity
-//@Table(name = "courses")
+@Entity
+@Table(name = "courses")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Course extends BaseEntity {
+public class Course extends NamedEntity {
 
-    private String name;
-
+    @Column(name = "description", nullable = false)
+    @NotNull
     private String description;
 
-    private Map<Integer, Quest> quests;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    @OrderBy(value = "order ASC")
+    private List<Quest.OrderedQuest> orderedQuests;
 
-    private List<Position> positions;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    private Set<Position> positions;
 }
