@@ -23,7 +23,7 @@ public class QuestProgress extends BaseEntity {
     @NotNull
     private CourseProgress courseProgress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "quest_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
