@@ -1,15 +1,12 @@
 package com.techspirit.casein.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@Table(name = "dialogs")
+@Entity
+@Table(name = "dialogs")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,5 +14,10 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 public class Dialog extends PageElement {
 
-    private boolean with_action;
+    @Column(name = "with_action")
+    private boolean withAction;
+
+    @Column(name = "order")
+    @Range(min = 0)
+    private int order;
 }

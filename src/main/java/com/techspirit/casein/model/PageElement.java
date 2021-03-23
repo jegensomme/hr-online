@@ -1,15 +1,16 @@
 package com.techspirit.casein.model;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@Table(name = "page_elements")
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "page_elements")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,7 +18,13 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 public class PageElement extends BaseEntity {
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "page_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @NotNull
     private Page page;
 
+    @Column(name = "text")
+    @NotBlank
     private String text;
 }
