@@ -18,7 +18,7 @@ public class CourseProgress {
     public CourseProgress(ServiceCourse serviceCourse) { this.serviceCourse = serviceCourse;}
 
     @CrossOrigin
-    @GetMapping(value = "/pages/{id}")
+    @GetMapping(value = "/courses/{id}")
     public ResponseEntity<Course> read(@PathVariable(name = "id") int id){
         final Course course = serviceCourse.read(id);
 

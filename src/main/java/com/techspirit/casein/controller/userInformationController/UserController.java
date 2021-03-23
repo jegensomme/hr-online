@@ -47,7 +47,7 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
+    @CrossOrigin
     @PutMapping(value = "/profile/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody User user) {
         final boolean update = serviceUser.update(user, id);
@@ -56,7 +56,7 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
+    @CrossOrigin
     @DeleteMapping(value = "/profile/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         final boolean deleted = serviceUser.delete(id);

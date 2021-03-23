@@ -18,7 +18,7 @@ public class DialogController {
     public DialogController(ServiceDialog serviceDialog) { this.serviceDialog = serviceDialog;}
 
     @CrossOrigin
-    @GetMapping(value = "/pages/{id}")
+    @GetMapping(value = "/dialogs/{id}")
     public ResponseEntity<Dialog> read(@PathVariable(name = "id") int id){
         final Dialog dialog = serviceDialog.read(id);
 

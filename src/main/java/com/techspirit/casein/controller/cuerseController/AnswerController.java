@@ -17,7 +17,7 @@ public class AnswerController {
     public AnswerController(ServiceAnswer serviceAnswer) { this.serviceAnswer = serviceAnswer;}
 
     @CrossOrigin
-    @GetMapping(value = "/answer/{id}")
+    @GetMapping(value = "/answers/{id}")
     public ResponseEntity<Answer> read(@PathVariable(name = "id") int id){
         final Answer answer = serviceAnswer.read(id);
 
@@ -27,7 +27,7 @@ public class AnswerController {
     }
 
     @CrossOrigin
-    @PutMapping(value = "/answer/{id}")
+    @PutMapping(value = "/answers/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id) {
         final boolean update = serviceAnswer.update(id);
         return update
