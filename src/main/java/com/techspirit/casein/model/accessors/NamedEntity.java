@@ -1,4 +1,4 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.accessors;
 
 import lombok.*;
 

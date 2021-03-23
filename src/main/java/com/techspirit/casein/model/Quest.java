@@ -1,5 +1,7 @@
 package com.techspirit.casein.model;
 
+import com.techspirit.casein.model.accessors.EmbeddedKeyEntity;
+import com.techspirit.casein.model.accessors.NamedEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

@@ -1,28 +1,30 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.accessors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.domain.Persistable;
 import org.springframework.util.Assert;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.EmbeddedId;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
-//  https://stackoverflow.com/a/6084701/548473
 @Access(AccessType.FIELD)
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public abstract class BaseEntity implements Persistable<Integer> {
+public class EmbeddedKeyEntity<ID extends Serializable> implements Persistable<ID> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    @EmbeddedId
+    private ID id;
 
     // doesn't work for hibernate lazy proxy
-    public Integer id() {
+    public ID id() {
         Assert.notNull(id, "Entity must have id");
         return id;
     }
@@ -42,7 +44,8 @@ public abstract class BaseEntity implements Persistable<Integer> {
         if (o == null || !getClass().equals(o.getClass())) {
             return false;
         }
-        BaseEntity that = (BaseEntity) o;
+        @SuppressWarnings("unchecked")
+        EmbeddedKeyEntity<ID> that = (EmbeddedKeyEntity<ID>) o;
         return id != null && id.equals(that.id);
     }
 
