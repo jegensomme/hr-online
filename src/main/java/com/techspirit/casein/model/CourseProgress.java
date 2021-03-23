@@ -18,7 +18,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class CourseProgress extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull

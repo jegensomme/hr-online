@@ -20,10 +20,10 @@ public class Course extends NamedEntity {
     @NotNull
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    @OneToMany(mappedBy = "course")
     @OrderBy(value = "order ASC")
     private List<Quest.OrderedQuest> orderedQuests;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    @OneToMany(mappedBy = "course")
     private Set<Position> positions;
 }
