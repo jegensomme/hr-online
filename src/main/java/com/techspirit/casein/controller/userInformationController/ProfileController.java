@@ -1,4 +1,4 @@
-package com.techspirit.casein.controller;
+package com.techspirit.casein.controller.userInformationController;
 
 import com.techspirit.casein.model.Profile;
 import com.techspirit.casein.service.prototype.ServiceProfile;

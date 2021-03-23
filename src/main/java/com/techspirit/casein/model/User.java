@@ -2,6 +2,8 @@ package com.techspirit.casein.model;
 
 import com.techspirit.casein.model.accessors.NamedEntity;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -18,27 +20,20 @@ import java.util.Set;
 @ToString(callSuper = true, exclude = {"link"})
 public class User extends NamedEntity {
 
-    @Column(name = "email")
-    @Email
-    @NotBlank
-    @Size(max = 100)
-    private String email;
-
     @Column(name = "link")
     @URL
     @NotBlank
     private String link;
 
-    @OneToOne(mappedBy = "user")
-    private Photo photo;
-
     @Column(name = "registered")
     @NotNull
     private LocalDateTime registered;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Position> positions;
+    @OneToOne
+    @JoinColumn(name = "profile_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Profile profile;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<CourseProgress> courseProgresses;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private CourseProgress courseProgress;
 }

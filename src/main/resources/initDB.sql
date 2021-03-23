@@ -6,10 +6,10 @@ DROP TABLE IF EXISTS quest_progresses;
 DROP TABLE IF EXISTS course_progresses;
 DROP TABLE IF EXISTS pages;
 DROP TABLE IF EXISTS course_quests;
-DROP TABLE IF EXISTS user_positions;
-DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS profiles;
+DROP TABLE IF EXISTS work_schedules;
 DROP TABLE IF EXISTS positions;
 DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS quests;
@@ -32,32 +32,42 @@ CREATE TABLE positions
     FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE
 );
 
+CREATE TABLE work_schedules
+(
+    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq')
+);
+
+CREATE TABLE profiles
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name             VARCHAR                     NOT NULL,
+    entry_date       DATE    DEFAULT date(now()) NOT NULL,
+    email            VARCHAR                     NOT NULL,
+    work_schedule_id INTEGER,
+    position_id      INTEGER                     NOT NULL,
+    FOREIGN KEY (work_schedule_id) REFERENCES work_schedules (id),
+    FOREIGN KEY (position_id)      REFERENCES positions      (id) ON DELETE CASCADE,
+    CONSTRAINT profiles_unique_email_idx UNIQUE (email)
+
+);
+
 CREATE TABLE users
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name        VARCHAR                 NOT NULL,
-    email       VARCHAR                 NOT NULL,
-    link        TEXT                    NOT NULL,
-    registered  TIMESTAMP DEFAULT now() NOT NULL,
-    CONSTRAINT users_unique_email_idx UNIQUE (email),
-    CONSTRAINT users_unique_link_idx UNIQUE (link)
+    id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name               VARCHAR                 NOT NULL,
+    link               TEXT                    NOT NULL,
+    registered         TIMESTAMP DEFAULT now() NOT NULL,
+    profile_id         INTEGER                 NOT NULL,
+    CONSTRAINT users_unique_profile_idx         UNIQUE (profile_id),
+    CONSTRAINT users_unique_link_idx            UNIQUE (link)
 );
 
 CREATE TABLE photos
 (
     id      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     title   TEXT,
-    value   BYTEA NOT NULL,
-    FOREIGN KEY (id) REFERENCES users (id) ON DELETE CASCADE
-);
-
-CREATE TABLE user_positions
-(
-    user_id     INTEGER NOT NULL,
-    position_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id)     REFERENCES users (id),
-    FOREIGN KEY (position_id) REFERENCES positions  (id),
-    CONSTRAINT user_positions_unique_idx UNIQUE (user_id, position_id)
+    value   BYTEA   NOT NULL,
+    FOREIGN KEY (id) REFERENCES profiles (id) ON DELETE CASCADE
 );
 
 CREATE TABLE quests
@@ -125,9 +135,9 @@ CREATE TABLE course_progresses
     current_quest_id INTEGER,
     value            SMALLINT DEFAULT 0 NOT NULL CHECK ( value >= 0 AND value <= 100 ),
     FOREIGN KEY (course_id)        REFERENCES courses (id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id)        REFERENCES courses (id) ON DELETE CASCADE,
     FOREIGN KEY (current_quest_id) REFERENCES quests  (id) ON DELETE SET NULL,
-    CONSTRAINT progresses_unique_idx UNIQUE (user_id, course_id)
+    FOREIGN KEY (user_id)          REFERENCES users   (id) ON DELETE CASCADE,
+    CONSTRAINT course_progresses_unique_user UNIQUE (user_id)
 );
 
 CREATE TABLE quest_progresses

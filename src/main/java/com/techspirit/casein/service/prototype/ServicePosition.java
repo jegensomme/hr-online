@@ -1,34 +1,34 @@
 package com.techspirit.casein.service.prototype;
 
-import com.techspirit.casein.model.Post;
+import com.techspirit.casein.model.Position;
 
 import java.util.List;
 
-public interface ServicePost {
+public interface ServicePosition {
     /**
      * Создает объект должности
-     * @param post - должность для создания
+     * @param position - должность для создания
      */
-    void create(Post post);
+    void create(Position position);
     /**
      * Возвращает список всех доступных должностей
      * @return список объектов
      */
-    List<Post> readALL();
+    List<Position> readALL();
     /**
      * Возвращает должность по его ID
      * @param id - id должности
      * @return - должность с заданным ID
      */
-    Post read(int id);
+    Position read(int id);
     /**
      * Обновляет должность с заданным ID,
      * в соответствии с переданной должностью
-     * @param post - должность, в соответсвии с которой нужно обновить данные
+     * @param position - должность, в соответсвии с которой нужно обновить данные
      * @param id - id должности, которую нужно обновить
      * @return - true если данные были обновлены, иначе false
      */
-    boolean update(Post post, int id);
+    boolean update(Position position, int id);
     /**
      * Удаляет должность с заданным ID
      * @param id - id должности, которую нужно удалить

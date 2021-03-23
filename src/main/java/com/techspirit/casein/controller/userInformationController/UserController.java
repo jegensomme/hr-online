@@ -1,4 +1,4 @@
-package com.techspirit.casein.controller;
+package com.techspirit.casein.controller.userInformationController;
 
 
 import com.techspirit.casein.model.User;

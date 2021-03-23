@@ -19,7 +19,7 @@ public class Photo extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private Profile profile;
 
     @Column(name = "title")
     private String title;

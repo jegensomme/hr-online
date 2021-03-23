@@ -1,4 +1,4 @@
-package com.techspirit.casein.controller;
+package com.techspirit.casein.controller.sistemController;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
