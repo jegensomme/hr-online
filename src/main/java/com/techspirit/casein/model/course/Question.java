@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,10 @@ public class Question extends BaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
     private List<Answer> answers;
+
+    @Column(name = "text")
+    @NotBlank
+    private String text;
 
     @Column(name = "order")
     @Range(min = 0)

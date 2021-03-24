@@ -5,8 +5,11 @@ DROP TABLE IF EXISTS quest_progresses;
 DROP TABLE IF EXISTS course_progresses;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS questions;
+DROP SEQUENCE IF EXISTS question_seq;
 DROP TABLE IF EXISTS pages;
+DROP SEQUENCE IF EXISTS page_seq;
 DROP TABLE IF EXISTS quests;
+DROP SEQUENCE IF EXISTS quest_seq;
 DROP TABLE IF EXISTS course_positions;
 DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS photos;
@@ -79,31 +82,35 @@ CREATE TABLE course_positions
     CONSTRAINT course_positions_unique_position_idx UNIQUE (position_id)
 );
 
+CREATE SEQUENCE quest_seq START WITH 1;
 CREATE TABLE quests
 (
     id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    course_id   INTEGER           NOT NULL,
-    name        VARCHAR           NOT NULL,
-    description TEXT              NOT NULL,
-    "order"     INTEGER DEFAULT 0 NOT NULL CHECK ( "order" >= 0 ),
+    course_id   INTEGER NOT NULL,
+    name        VARCHAR NOT NULL,
+    description TEXT    NOT NULL,
+    "order"     INTEGER NOT NULL DEFAULT nextval('quest_seq'),
     FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE
 );
 
+CREATE SEQUENCE page_seq START WITH 1;
 CREATE TABLE pages
 (
     id       INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    quest_id INTEGER           NOT NULL,
-    title    VARCHAR           NOT NULL,
-    text     TEXT              NOT NULL,
-    "order"  INTEGER DEFAULT 0 NOT NULL CHECK ( "order" >= 0 ),
+    quest_id INTEGER NOT NULL,
+    title    VARCHAR NOT NULL,
+    text     TEXT    NOT NULL,
+    "order"  INTEGER NOT NULL DEFAULT nextval('page_seq'),
     FOREIGN KEY (quest_id) REFERENCES quests (id) ON DELETE CASCADE
 );
 
+CREATE SEQUENCE question_seq START WITH 1;
 CREATE TABLE questions
 (
     id       INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    quest_id INTEGER           NOT NULL,
-    "order"  INTEGER DEFAULT 0 NOT NULL CHECK ( "order" >= 0 ),
+    quest_id INTEGER NOT NULL,
+    text     TEXT    NOT NULL,
+    "order"  INTEGER NOT NULL DEFAULT nextval('question_seq'),
     FOREIGN KEY (quest_id) REFERENCES quests (id) ON DELETE CASCADE
 );
 
@@ -135,7 +142,6 @@ CREATE TABLE quest_progresses
     course_progress_id  INTEGER            NOT NULL,
     quest_id            INTEGER            NOT NULL,
     finished            BOOL DEFAULT FALSE NOT NULL,
-    enabled             BOOL DEFAULT FALSE NOT NULL,
     FOREIGN KEY (quest_id)           REFERENCES quests            (id) ON DELETE CASCADE,
     FOREIGN KEY (course_progress_id) REFERENCES course_progresses (id) ON DELETE CASCADE,
     CONSTRAINT quest_progresses_unique_idx UNIQUE (course_progress_id, quest_id)
@@ -147,9 +153,8 @@ CREATE TABLE page_progresses
     quest_progress_id   INTEGER            NOT NULL,
     page_id             INTEGER            NOT NULL,
     finished            BOOL DEFAULT FALSE NOT NULL,
-    enabled             BOOL DEFAULT FALSE NOT NULL,
     FOREIGN KEY (page_id)            REFERENCES pages             (id) ON DELETE CASCADE,
-    FOREIGN KEY (quest_progress_id)  REFERENCES course_progresses (id) ON DELETE CASCADE,
+    FOREIGN KEY (quest_progress_id)  REFERENCES quest_progresses  (id) ON DELETE CASCADE,
     CONSTRAINT page_progresses_unique_idx UNIQUE (quest_progress_id, page_id)
 );
 

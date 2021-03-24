@@ -31,7 +31,4 @@ public class PageProgress extends BaseEntity {
 
     @Column(name = "finished")
     private boolean finished;
-
-    @Column(name = "enabled")
-    private boolean enabled;
 }

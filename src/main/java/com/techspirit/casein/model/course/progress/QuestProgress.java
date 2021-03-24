@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "quest_progresses")
@@ -32,6 +33,6 @@ public class QuestProgress extends BaseEntity {
     @Column(name = "finished")
     private boolean finished;
 
-    @Column(name = "enabled")
-    private boolean enabled;
+    @OneToMany
+    private List<PageProgress> pageProgresses;
 }
