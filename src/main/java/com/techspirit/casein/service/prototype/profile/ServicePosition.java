@@ -9,7 +9,7 @@ public interface ServicePosition {
      * Создает объект должности
      * @param position - должность для создания
      */
-    void create(Position position);
+    Position create(Position position);
     /**
      * Возвращает список всех доступных должностей
      * @return список объектов
@@ -25,14 +25,10 @@ public interface ServicePosition {
      * Обновляет должность с заданным ID,
      * в соответствии с переданной должностью
      * @param position - должность, в соответсвии с которой нужно обновить данные
-     * @param id - id должности, которую нужно обновить
-     * @return - true если данные были обновлены, иначе false
      */
-    boolean update(Position position, int id);
+    void update(Position position, int id);
     /**
      * Удаляет должность с заданным ID
-     * @param id - id должности, которую нужно удалить
-     * @return - true если должность была удалена, иначе false
      */
-    boolean delete(int id);
+    void delete(int id);
 }

@@ -9,7 +9,7 @@ public interface ServiceUser {
      * Создает нового пользователя
      * @param user - пользователь для создания
      */
-    void create(User user);
+    User create(User user);
     /**
      * Возвращает список всех пользователей
      * @return список объектов
@@ -26,13 +26,10 @@ public interface ServiceUser {
      * в соответствии с переданным пользователем
      * @param user - пользователь, в соответсвии с которым нужно обновить данные
      * @param id - id пользователя, которого нужно обновить
-     * @return - true если данные были обновлены, иначе false
      */
-    boolean update(User user, int id);
+    void update(User user, int id);
     /**
      * Удаляет пользователя с заданным ID
-     * @param id - id пользователя, который нужно удалить
-     * @return - true если пользователь был удален, иначе false
      */
-    boolean delete(int id);
+    void delete(int id);
 }

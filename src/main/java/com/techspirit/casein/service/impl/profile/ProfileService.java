@@ -3,53 +3,45 @@ package com.techspirit.casein.service.impl.profile;
 import com.techspirit.casein.model.profile.Profile;
 import com.techspirit.casein.repository.profile.ProfileRepository;
 import com.techspirit.casein.service.prototype.profile.ServiceProfile;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
+import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
+
 @Service
+@AllArgsConstructor
 public class ProfileService implements ServiceProfile {
     private final ProfileRepository profileRepository;
 
-    public ProfileService(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
+    @Override
+    public Profile create(Profile profile) {
+        Assert.notNull(profile, "profile must not be null");
+        return profileRepository.save(profile);
     }
 
     @Override
-    public void create(Profile profile) {
-        profileRepository.save(profile);
-    }
-
-    @Override
-    public List<Profile> readALL(){
+    public List<Profile> readALL() {
         return profileRepository.findAll();
     }
 
     @Override
-    public Profile read(int id){
+    public Profile read(int id) {
         return profileRepository.getOne(id);
     }
 
     @Override
-    public boolean update(Profile profile, int id)
-    {
-        if(profileRepository.existsById(id)) {
-            profile.setId(id);
-            profileRepository.save(profile);
-            return true;
-        }
-        return false;
+    public void update(Profile profile, int id) {
+        checkNotFoundWithId(profileRepository.existsById(id), id);
+        profileRepository.save(profile);
     }
 
     @Override
-    public boolean delete(int id)
-    {
-        if (profileRepository.existsById(id))
-        {
-            profileRepository.deleteById(id);
-            return  true;
-        }
-        return false;
+    public void delete(int id) {
+        checkNotFoundWithId(profileRepository.existsById(id), id);
+        profileRepository.deleteById(id);
     }
 
 }

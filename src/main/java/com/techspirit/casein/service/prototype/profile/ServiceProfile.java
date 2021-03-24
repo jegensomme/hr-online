@@ -9,7 +9,7 @@ public interface ServiceProfile {
      * Создает объект личного дела работника
      * @param profile - личное дело для создания
      */
-    void create(Profile profile);
+    Profile create(Profile profile);
     /**
      * Возвращает список всех доступных личных дел
      * @return список объектов
@@ -26,14 +26,12 @@ public interface ServiceProfile {
      * в соответствии с переданным личным делом
      * @param profile - личное дело, в соответсвии с которым нужно обновить данные
      * @param id - id личного дела, которое нужно обновить
-     * @return - true если данные были обновлены, иначе false
      */
-    boolean update(Profile profile, int id);
+    void update(Profile profile, int id);
     /**
      * Удаляет личное дело с заданным ID
      * @param id - id личного дела, который нужно удалить
-     * @return - true если личное дело было удалено, иначе false
      */
-    boolean delete(int id);
+    void delete(int id);
 
 }
