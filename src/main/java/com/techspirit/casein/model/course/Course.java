@@ -1,6 +1,7 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.course;
 
-import com.techspirit.casein.model.accessors.NamedEntity;
+import com.techspirit.casein.model.NamedEntity;
+import com.techspirit.casein.model.profile.Position;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,13 +18,13 @@ import java.util.Set;
 @ToString(callSuper = true)
 public class Course extends NamedEntity {
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     @NotNull
     private String description;
 
     @OneToMany(mappedBy = "course")
     @OrderBy(value = "order ASC")
-    private List<Quest.OrderedQuest> orderedQuests;
+    private List<Quest> quests;
 
     @OneToMany(mappedBy = "course")
     private Set<Position> positions;

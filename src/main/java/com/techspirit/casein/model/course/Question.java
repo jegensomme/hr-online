@@ -1,34 +1,33 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.course;
 
-import com.techspirit.casein.model.accessors.NamedEntity;
+import com.techspirit.casein.model.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "pages")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "questions")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Page extends NamedEntity {
+public class Question extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quest_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
     private Quest quest;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
+    private List<Answer> answers;
 
     @Column(name = "order")
     @Range(min = 0)
     private int order;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "page")
-    private List<PageElement> pageElements;
 }

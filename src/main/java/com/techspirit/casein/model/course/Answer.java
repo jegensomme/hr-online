@@ -1,31 +1,31 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.course;
 
-import com.techspirit.casein.model.accessors.BaseEntity;
+import com.techspirit.casein.model.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "page_elements")
+@Table(name = "answers")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class PageElement extends BaseEntity {
+public class Answer extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "page_id")
+    @JoinColumn(name = "question_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
-    private Page page;
+    private Question question;
 
     @Column(name = "text")
     @NotBlank
     private String text;
+
+    @Column(name = "correct")
+    private boolean correct;
 }

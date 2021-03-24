@@ -1,6 +1,7 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.profile;
 
-import com.techspirit.casein.model.accessors.NamedEntity;
+import com.techspirit.casein.model.course.progress.CourseProgress;
+import com.techspirit.casein.model.NamedEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -9,7 +10,6 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")

@@ -1,6 +1,7 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.profile;
 
-import com.techspirit.casein.model.accessors.NamedEntity;
+import com.techspirit.casein.model.NamedEntity;
+import com.techspirit.casein.model.course.Course;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,6 +21,5 @@ public class Position extends NamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
     private Course course;
 }
