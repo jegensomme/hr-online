@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
 public class Photo extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)

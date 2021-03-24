@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class Profile extends NamedEntity {
 
     @Column(name = "email")

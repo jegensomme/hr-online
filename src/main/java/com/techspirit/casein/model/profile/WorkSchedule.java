@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class WorkSchedule extends BaseEntity {
 
     @OneToMany(mappedBy = "workSchedule")

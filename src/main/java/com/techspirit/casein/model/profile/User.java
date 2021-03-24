@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.profile;
 
+import com.techspirit.casein.model.chat.Chat;
 import com.techspirit.casein.model.course.progress.CourseProgress;
 import com.techspirit.casein.model.NamedEntity;
 import lombok.*;
@@ -10,6 +11,8 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -36,4 +39,7 @@ public class User extends NamedEntity {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private CourseProgress courseProgress;
+
+    @OneToOne(mappedBy = "user")
+    private Chat chat;
 }
