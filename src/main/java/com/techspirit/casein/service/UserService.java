@@ -1,10 +1,8 @@
 package com.techspirit.casein.service;
 
-import com.techspirit.casein.model.User;
-import com.techspirit.casein.repository.UserRepository;
+import com.techspirit.casein.model.profile.User;
+import com.techspirit.casein.repository.profile.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
