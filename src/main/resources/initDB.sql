@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS chat_messages;
+DROP TABLE IF EXISTS chats;
 DROP TABLE IF EXISTS page_progresses;
 DROP TABLE IF EXISTS quest_progresses;
 DROP TABLE IF EXISTS course_progresses;
@@ -142,6 +144,50 @@ CREATE TABLE page_progresses
     FOREIGN KEY (page_id)            REFERENCES pages             (id) ON DELETE CASCADE,
     FOREIGN KEY (quest_progress_id)  REFERENCES course_progresses (id) ON DELETE CASCADE,
     CONSTRAINT page_progresses_unique_idx UNIQUE (quest_progress_id, page_id)
-)
+);
+
+CREATE TABLE chats
+(
+    id      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT chats_unique_user_idx UNIQUE (user_id)
+);
+
+CREATE TABLE chat_messages
+(
+    id           INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    receiver_id  INTEGER                 NOT NULL,
+    message      TEXT                    NOT NULL,
+    date_time    TIMESTAMP DEFAULT now() NOT NULL,
+    FOREIGN KEY (receiver_id) REFERENCES chats (id) ON DELETE CASCADE,
+    CONSTRAINT chat_messages_unique_idx UNIQUE (receiver_id, date_time)
+);
+
+/*CREATE TABLE chats
+(
+    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+);
+
+CREATE TABLE chat_members
+(
+    chat_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (chat_id)  REFERENCES chats (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT chat_members_unique_idx UNIQUE (chat_id, user_id)
+);
+
+CREATE TABLE chat_messages
+(
+    id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    chat_id   INTEGER                 NOT NULL,
+    sender_id INTEGER                 NOT NULL,
+    message   INTEGER                 NOT NULL,
+    date_time TIMESTAMP DEFAULT now() NOT NULL,
+    FOREIGN KEY (chat_id)   REFERENCES chats (id) ON DELETE CASCADE,
+    FOREIGN KEY (sender_id) REFERENCES users (id) ON DELETE CASCADE
+);*/
+
 
 
