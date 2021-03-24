@@ -1,5 +1,7 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.profile;
 
+import com.techspirit.casein.model.course.progress.CourseProgress;
+import com.techspirit.casein.model.NamedEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;

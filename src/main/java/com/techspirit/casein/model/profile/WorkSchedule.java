@@ -1,5 +1,6 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.profile;
 
+import com.techspirit.casein.model.BaseEntity;
 import lombok.*;
 
 import javax.persistence.Entity;

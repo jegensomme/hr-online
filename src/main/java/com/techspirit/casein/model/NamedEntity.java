@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @ToString(callSuper = true)
 public abstract class NamedEntity extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     @NotBlank
     @Size(max = 100)
     private String name;

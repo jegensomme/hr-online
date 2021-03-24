@@ -1,10 +1,12 @@
-package com.techspirit.casein.model;
+package com.techspirit.casein.model.profile;
 
+import com.techspirit.casein.model.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "photos")
@@ -16,7 +18,7 @@ import javax.persistence.*;
 public class Photo extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @JoinColumn(name = "profile_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Profile profile;
 
@@ -24,5 +26,6 @@ public class Photo extends BaseEntity {
     private String title;
 
     @Column(name = "value")
+    @NotBlank
     private String value;
 }
