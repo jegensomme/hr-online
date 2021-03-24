@@ -3,15 +3,16 @@ package com.techspirit.casein.service;
 import com.techspirit.casein.model.profile.User;
 import com.techspirit.casein.repository.profile.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
 
 import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
-import static com.techspirit.casein.util.ValidationUtil.checkNotFound;
 
 @Service
+@NoArgsConstructor
 @AllArgsConstructor
 public class UserService {
 
