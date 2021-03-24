@@ -164,30 +164,5 @@ CREATE TABLE chat_messages
     CONSTRAINT chat_messages_unique_idx UNIQUE (receiver_id, date_time)
 );
 
-/*CREATE TABLE chats
-(
-    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-);
-
-CREATE TABLE chat_members
-(
-    chat_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
-    FOREIGN KEY (chat_id)  REFERENCES chats (id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
-    CONSTRAINT chat_members_unique_idx UNIQUE (chat_id, user_id)
-);
-
-CREATE TABLE chat_messages
-(
-    id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    chat_id   INTEGER                 NOT NULL,
-    sender_id INTEGER                 NOT NULL,
-    message   INTEGER                 NOT NULL,
-    date_time TIMESTAMP DEFAULT now() NOT NULL,
-    FOREIGN KEY (chat_id)   REFERENCES chats (id) ON DELETE CASCADE,
-    FOREIGN KEY (sender_id) REFERENCES users (id) ON DELETE CASCADE
-);*/
-
 
 
