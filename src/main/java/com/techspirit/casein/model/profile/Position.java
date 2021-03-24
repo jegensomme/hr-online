@@ -17,9 +17,4 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class Position extends NamedEntity {
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Course course;
 }

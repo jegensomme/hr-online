@@ -7,29 +7,21 @@ DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS pages;
 DROP TABLE IF EXISTS quests;
+DROP TABLE IF EXISTS course_positions;
+DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS profiles;
 DROP TABLE IF EXISTS work_schedules;
 DROP TABLE IF EXISTS positions;
-DROP TABLE IF EXISTS courses;
 DROP SEQUENCE IF EXISTS global_seq;
 
 CREATE SEQUENCE global_seq START WITH 100000;
 
-CREATE TABLE courses
-(
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name        VARCHAR NOT NULL,
-    description TEXT    NOT NULL
-);
-
 CREATE TABLE positions
 (
     id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name      VARCHAR NOT NULL,
-    course_id INTEGER NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses (id) ON DELETE CASCADE
+    name      VARCHAR NOT NULL
 );
 
 CREATE TABLE work_schedules
@@ -48,7 +40,6 @@ CREATE TABLE profiles
     FOREIGN KEY (work_schedule_id) REFERENCES work_schedules (id) ON DELETE SET NULL,
     FOREIGN KEY (position_id)      REFERENCES positions      (id) ON DELETE CASCADE,
     CONSTRAINT profiles_unique_email_idx UNIQUE (email)
-
 );
 
 CREATE TABLE users
@@ -70,6 +61,22 @@ CREATE TABLE photos
     value      TEXT    NOT NULL,
     FOREIGN KEY (profile_id) REFERENCES profiles (id) ON DELETE CASCADE,
     CONSTRAINT photos_unique_profile_idx UNIQUE (profile_id)
+);
+
+CREATE TABLE courses
+(
+    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name        VARCHAR NOT NULL,
+    description TEXT    NOT NULL
+);
+
+CREATE TABLE course_positions
+(
+    course_id   INTEGER NOT NULL,
+    position_id INTEGER NOT NULL,
+    FOREIGN KEY (course_id)   REFERENCES courses   (id) ON DELETE CASCADE,
+    FOREIGN KEY (position_id) REFERENCES positions (id) ON DELETE CASCADE,
+    CONSTRAINT course_positions_unique_position_idx UNIQUE (position_id)
 );
 
 CREATE TABLE quests

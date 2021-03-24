@@ -26,6 +26,10 @@ public class Course extends NamedEntity {
     @OrderBy(value = "order ASC")
     private List<Quest> quests;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany
+    @JoinTable(
+            name = "course_positions",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "position_id"))
     private Set<Position> positions;
 }
