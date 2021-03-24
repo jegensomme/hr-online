@@ -12,6 +12,6 @@ public class PingController {
     @GetMapping(value = "/ping")
     public ResponseEntity<?> read ()
     {
-        return new ResponseEntity(true, HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
