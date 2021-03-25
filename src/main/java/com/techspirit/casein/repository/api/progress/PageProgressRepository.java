@@ -1,4 +1,4 @@
-package com.techspirit.casein.repository.api.course.progress;
+package com.techspirit.casein.repository.api.progress;
 
 import com.techspirit.casein.model.course.progress.PageProgress;
 import com.techspirit.casein.repository.api.DependentRepository;

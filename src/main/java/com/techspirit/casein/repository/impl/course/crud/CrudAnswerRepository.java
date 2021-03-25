@@ -10,5 +10,5 @@ import java.util.List;
 public interface CrudAnswerRepository extends JpaRepository<Answer, Integer> {
 
     @Query("SELECT a FROM Answer a WHERE a.question.id=:questionId")
-    List<Answer> getAll(@Param("v") int questionId);
+    List<Answer> getAll(@Param("questionId") int questionId);
 }

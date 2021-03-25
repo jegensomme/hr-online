@@ -1,11 +1,11 @@
-package com.techspirit.casein.repository.impl.course.progress;
+package com.techspirit.casein.repository.impl.progress;
 
 import com.techspirit.casein.model.course.progress.PageProgress;
 import com.techspirit.casein.model.course.progress.QuestProgress;
-import com.techspirit.casein.repository.api.course.progress.PageProgressRepository;
+import com.techspirit.casein.repository.api.progress.PageProgressRepository;
 import com.techspirit.casein.repository.impl.AbstractDependentRepository;
-import com.techspirit.casein.repository.impl.course.progress.crud.CrudPageProgressRepository;
-import com.techspirit.casein.repository.impl.course.progress.crud.CrudQuestProgressRepository;
+import com.techspirit.casein.repository.impl.progress.crud.CrudPageProgressRepository;
+import com.techspirit.casein.repository.impl.progress.crud.CrudQuestProgressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

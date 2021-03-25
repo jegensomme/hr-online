@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class QuestionRepositoryImpl extends AbstractDependentRepository<Question, Quest> implements QuestionRepository {
-
+public class QuestionRepositoryImpl extends AbstractDependentRepository<Question, Quest>
+                                        implements QuestionRepository {
     private final CrudQuestionRepository crudRepository;
 
     @Autowired

@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PhotoRepositoryImpl extends AbstractDependentRepository<Photo, Profile> implements PhotoRepository {
-
+public class PhotoRepositoryImpl extends AbstractDependentRepository<Photo, Profile>
+                                    implements PhotoRepository {
     @Autowired
     public PhotoRepositoryImpl(CrudPhotoRepository crudRepository,
                                CrudProfileRepository crudProfileRepository) {

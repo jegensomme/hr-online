@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PageRepositoryImpl extends AbstractDependentRepository<Page, Quest> implements PageRepository {
-
+public class PageRepositoryImpl extends AbstractDependentRepository<Page, Quest>
+                                    implements PageRepository {
     private final CrudPageRepository crudRepository;
 
     @Autowired
