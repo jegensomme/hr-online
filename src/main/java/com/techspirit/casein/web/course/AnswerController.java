@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/course/quest/question/answer")
+@RequestMapping("/question/answer")
 @AllArgsConstructor
 @Slf4j
 @Api(tags="Answer controller")

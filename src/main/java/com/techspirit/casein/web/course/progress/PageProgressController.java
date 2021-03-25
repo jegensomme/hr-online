@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user/progress/quest/page")
+@RequestMapping("/quest/page")
 @AllArgsConstructor
 @Slf4j
 @Api(tags="PageProgress controller")

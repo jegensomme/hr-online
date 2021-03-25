@@ -10,5 +10,5 @@ public interface ServicePhoto {
      * @param id - id фотгорафии
      * @return - фотгорафия с заданным ID
      */
-    Photo read(int id);
+    Photo read(int id, int profileId);
 }

@@ -9,5 +9,5 @@ public interface ServicePage {
      * @param id - id страницы
      * @return - страница с заданным ID
      */
-    Page read(int id);
+    Page read(int id, int questId);
 }

@@ -8,5 +8,5 @@ public interface ServicePageProgress {
      * @param id - id прогресса страницы
      * @return - прогресс страницы с заданным ID
      */
-    PageProgress read(int id);
+    PageProgress read(int id, int pageProgressId);
 }

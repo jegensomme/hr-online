@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/course/quest/question")
+@RequestMapping("/quest/question")
 @AllArgsConstructor
 @Slf4j
 @Api(tags="Question controller")

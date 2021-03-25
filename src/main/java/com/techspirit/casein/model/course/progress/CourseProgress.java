@@ -31,10 +31,6 @@ public class CourseProgress extends BaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Course course;
 
-    @ManyToOne
-    @JoinColumn(name = "current_quest_id")
-    private Quest quest;
-
     @Column(name = "value")
     @Range(min = 0, max = 100)
     private int value;

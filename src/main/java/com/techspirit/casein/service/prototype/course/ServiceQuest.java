@@ -9,5 +9,5 @@ public interface ServiceQuest {
      * @param id - id квеста
      * @return - квест с заданным ID
      */
-    Quest read(int id);
+    Quest read(int id, int courseId);
 }

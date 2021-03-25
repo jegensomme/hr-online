@@ -1,7 +1,7 @@
 package com.techspirit.casein.service.impl.profile;
 
 import com.techspirit.casein.model.profile.Position;
-import com.techspirit.casein.repository.profile.PositionRepository;
+import com.techspirit.casein.repository.api.profile.PositionRepository;
 import com.techspirit.casein.service.prototype.profile.ServicePosition;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,7 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @Service
 @AllArgsConstructor
 public class PositionService implements ServicePosition {
+
     private final PositionRepository positionRepository;
 
     @Override
@@ -24,23 +25,21 @@ public class PositionService implements ServicePosition {
 
     @Override
     public List<Position> readALL() {
-        return positionRepository.findAll();
+        return positionRepository.getAll();
     }
 
     @Override
     public Position read(int id) {
-        return positionRepository.getOne(id);
+        return checkNotFoundWithId(positionRepository.get(id), id);
     }
 
     @Override
     public void update(Position position, int id) {
-        checkNotFoundWithId(positionRepository.existsById(id), id);
-        positionRepository.save(position);
+        checkNotFoundWithId(positionRepository.save(position), id);
     }
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(positionRepository.existsById(id), id);
-        positionRepository.deleteById(id);
+        checkNotFoundWithId(positionRepository.delete(id), id);
     }
 }

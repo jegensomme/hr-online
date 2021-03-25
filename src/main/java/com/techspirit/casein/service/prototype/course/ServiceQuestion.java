@@ -8,5 +8,5 @@ public interface ServiceQuestion {
      * @param id - id вопроса
      * @return - вопрос с заданным ID
      */
-    Question read(int id);
+    Question read(int id, int questId);
 }
