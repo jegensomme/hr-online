@@ -35,10 +35,6 @@ public class Profile extends NamedEntity {
     private LocalDate entryDate;
 
     @ManyToOne
-    @JoinColumn(name = "work_schedule_id")
-    private WorkSchedule workSchedule;
-
-    @ManyToOne
     @JoinColumn(name = "position_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull

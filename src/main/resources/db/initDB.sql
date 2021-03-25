@@ -15,7 +15,6 @@ DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS profiles;
-DROP TABLE IF EXISTS work_schedules;
 DROP TABLE IF EXISTS positions;
 DROP SEQUENCE IF EXISTS global_seq;
 
@@ -27,20 +26,13 @@ CREATE TABLE positions
     name      VARCHAR NOT NULL
 );
 
-CREATE TABLE work_schedules
-(
-    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq')
-);
-
 CREATE TABLE profiles
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR                     NOT NULL,
     entry_date       DATE    DEFAULT date(now()) NOT NULL,
     email            VARCHAR                     NOT NULL,
-    work_schedule_id INTEGER,
     position_id      INTEGER                     NOT NULL,
-    FOREIGN KEY (work_schedule_id) REFERENCES work_schedules (id) ON DELETE SET NULL,
     FOREIGN KEY (position_id)      REFERENCES positions      (id) ON DELETE CASCADE,
     CONSTRAINT profiles_unique_email_idx UNIQUE (email)
 );
