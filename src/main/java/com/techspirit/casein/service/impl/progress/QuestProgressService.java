@@ -12,10 +12,10 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class QuestProgressService implements ServiceQuestProgress {
 
-    private final QuestProgressRepository questProgressRepository;
+    private final QuestProgressRepository repository;
 
     @Override
     public QuestProgress read(int id, int courseProgress) {
-        return checkNotFoundWithId(questProgressRepository.get(id, courseProgress), id);
+        return checkNotFoundWithId(repository.get(id, courseProgress), id);
     }
 }

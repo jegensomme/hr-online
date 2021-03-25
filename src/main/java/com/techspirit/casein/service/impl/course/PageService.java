@@ -12,10 +12,10 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class PageService implements ServicePage {
 
-    private final PageRepository pageRepository;
+    private final PageRepository repository;
 
     @Override
     public Page read(int id, int questId) {
-        return checkNotFoundWithId(pageRepository.get(id, questId), id);
+        return checkNotFoundWithId(repository.get(id, questId), id);
     }
 }

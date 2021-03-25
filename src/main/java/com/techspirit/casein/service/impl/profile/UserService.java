@@ -14,32 +14,32 @@ import java.util.List;
 @AllArgsConstructor
 public class UserService implements ServiceUser {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     @Override
     public List<User> readALL() {
-        return userRepository.getAll();
+        return repository.getAll();
     }
 
     @Override
     public User read(int id) {
-        return checkNotFoundWithId(userRepository.get(id), id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public void update(User user, int id) {
-        checkNotFoundWithId(userRepository.save(user), id);
+        checkNotFoundWithId(repository.save(user), id);
     }
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(userRepository.delete(id), id);
+        checkNotFoundWithId(repository.delete(id), id);
     }
 
 }

@@ -12,11 +12,11 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class PhotoService implements ServicePhoto {
 
-    private final PhotoRepository photoRepository;
+    private final PhotoRepository repository;
 
     @Override
     public Photo read(int id, int profileId){
-        return checkNotFoundWithId(photoRepository.get(id, profileId), id);
+        return checkNotFoundWithId(repository.get(id, profileId), id);
     }
 
 }

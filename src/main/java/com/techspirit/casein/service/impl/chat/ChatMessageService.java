@@ -16,31 +16,31 @@ import java.util.List;
 @AllArgsConstructor
 public class ChatMessageService implements ServiceChatMessage {
 
-    private final ChatMessageRepository chatMessageRepository;
+    private final ChatMessageRepository repository;
 
     @Override
     public ChatMessage create(ChatMessage chatMessage, int chatId) {
         Assert.notNull(chatMessage, "chatMessage must not be null");
-        return chatMessageRepository.save(chatMessage, chatId);
+        return repository.save(chatMessage, chatId);
     }
 
     @Override
     public List<ChatMessage> readALL(int chatId) {
-        return chatMessageRepository.getAll(chatId);
+        return repository.getAll(chatId);
     }
 
     @Override
     public ChatMessage read(int id, int chatId) {
-        return checkNotFoundWithId(chatMessageRepository.get(id, chatId), id);
+        return checkNotFoundWithId(repository.get(id, chatId), id);
     }
 
     @Override
     public void update(ChatMessage chatMessage, int chatId) {
-        checkNotFoundWithId(chatMessageRepository.save(chatMessage, chatId), chatMessage.id());
+        checkNotFoundWithId(repository.save(chatMessage, chatId), chatMessage.id());
     }
 
     @Override
     public void delete(int id, int chatId) {
-        checkNotFoundWithId(chatMessageRepository.delete(id, chatId), id);
+        checkNotFoundWithId(repository.delete(id, chatId), id);
     }
 }

@@ -12,10 +12,10 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class CourseService implements ServiceCourse {
 
-    private final CourseRepository courseRepository;
+    private final CourseRepository repository;
 
     @Override
     public Course read(int id) {
-        return checkNotFoundWithId(courseRepository.get(id), id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 }

@@ -15,31 +15,31 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class PositionService implements ServicePosition {
 
-    private final PositionRepository positionRepository;
+    private final PositionRepository repository;
 
     @Override
     public Position create(Position position) {
         Assert.notNull(position, "profile must not be null");
-        return positionRepository.save(position);
+        return repository.save(position);
     }
 
     @Override
     public List<Position> readALL() {
-        return positionRepository.getAll();
+        return repository.getAll();
     }
 
     @Override
     public Position read(int id) {
-        return checkNotFoundWithId(positionRepository.get(id), id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public void update(Position position, int id) {
-        checkNotFoundWithId(positionRepository.save(position), id);
+        checkNotFoundWithId(repository.save(position), id);
     }
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(positionRepository.delete(id), id);
+        checkNotFoundWithId(repository.delete(id), id);
     }
 }

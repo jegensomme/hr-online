@@ -12,10 +12,10 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class QuestionService implements ServiceQuestion {
 
-    private final QuestionRepository questionRepository;
+    private final QuestionRepository repository;
 
     @Override
     public Question read(int id, int questId) {
-        return checkNotFoundWithId(questionRepository.get(id, questId), id);
+        return checkNotFoundWithId(repository.get(id, questId), id);
     }
 }

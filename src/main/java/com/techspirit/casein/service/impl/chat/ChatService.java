@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ChatService implements ServiceChat {
 
-    private final ChatRepository chatRepository;
+    private final ChatRepository repository;
 
     @Override
     public Chat read(int id, int userId) {
-        return checkNotFoundWithId(chatRepository.get(id, userId), id);
+        return checkNotFoundWithId(repository.get(id, userId), id);
     }
 }

@@ -15,32 +15,32 @@ import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 @AllArgsConstructor
 public class ProfileService implements ServiceProfile {
 
-    private final ProfileRepository profileRepository;
+    private final ProfileRepository repository;
 
     @Override
     public Profile create(Profile profile) {
         Assert.notNull(profile, "profile must not be null");
-        return profileRepository.save(profile);
+        return repository.save(profile);
     }
 
     @Override
     public List<Profile> readALL() {
-        return profileRepository.getAll();
+        return repository.getAll();
     }
 
     @Override
     public Profile read(int id) {
-        return checkNotFoundWithId(profileRepository.get(id), id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public void update(Profile profile, int id) {
-        checkNotFoundWithId(profileRepository.save(profile), id);
+        checkNotFoundWithId(repository.save(profile), id);
     }
 
     @Override
     public void delete(int id) {
-        checkNotFoundWithId(profileRepository.delete(id), id);
+        checkNotFoundWithId(repository.delete(id), id);
     }
 
 }
