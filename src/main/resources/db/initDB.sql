@@ -128,11 +128,9 @@ CREATE TABLE course_progresses
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id          INTEGER            NOT NULL,
     course_id        INTEGER            NOT NULL,
-    current_quest_id INTEGER,
     value            SMALLINT DEFAULT 0 NOT NULL CHECK ( value >= 0 AND value <= 100 ),
     FOREIGN KEY (user_id)          REFERENCES users   (id) ON DELETE CASCADE,
     FOREIGN KEY (course_id)        REFERENCES courses (id) ON DELETE CASCADE,
-    FOREIGN KEY (current_quest_id)    REFERENCES quests  (id) ON DELETE SET NULL,
     CONSTRAINT course_progresses_unique_user_idx UNIQUE (user_id)
 );
 
