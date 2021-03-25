@@ -1,4 +1,4 @@
-package com.techspirit.casein.service.prototype.course.progress;
+package com.techspirit.casein.service.prototype.progress;
 
 import com.techspirit.casein.model.course.progress.QuestProgress;
 

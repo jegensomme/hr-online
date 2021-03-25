@@ -1,8 +1,8 @@
-package com.techspirit.casein.service.impl.course.progress;
+package com.techspirit.casein.service.impl.progress;
 
 import com.techspirit.casein.model.course.progress.PageProgress;
 import com.techspirit.casein.repository.api.progress.PageProgressRepository;
-import com.techspirit.casein.service.prototype.course.progress.ServicePageProgress;
+import com.techspirit.casein.service.prototype.progress.ServicePageProgress;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
