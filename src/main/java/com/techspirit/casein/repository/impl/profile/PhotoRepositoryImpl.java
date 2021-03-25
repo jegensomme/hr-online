@@ -1,22 +1,30 @@
 package com.techspirit.casein.repository.impl.profile;
 
 import com.techspirit.casein.model.profile.Photo;
+import com.techspirit.casein.model.profile.Profile;
 import com.techspirit.casein.repository.api.profile.PhotoRepository;
+import com.techspirit.casein.repository.impl.AbstractDependentRepository;
+import com.techspirit.casein.repository.impl.profile.crud.CrudPhotoRepository;
+import com.techspirit.casein.repository.impl.profile.crud.CrudProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class PhotoRepositoryImpl implements PhotoRepository {
+@Repository
+public class PhotoRepositoryImpl extends AbstractDependentRepository<Photo, Profile> implements PhotoRepository {
 
-    @Override
-    public Photo save(Photo photo, int profileId) {
-        return null;
+    @Autowired
+    public PhotoRepositoryImpl(CrudPhotoRepository crudRepository,
+                               CrudProfileRepository crudProfileRepository) {
+        super(crudRepository, crudProfileRepository);
     }
 
     @Override
-    public boolean delete(int id, int profileId) {
-        return false;
+    protected void setParent(Photo photo, Profile profile) {
+        photo.setProfile(profile);
     }
 
     @Override
-    public Photo get(int id, int profileId) {
-        return null;
+    protected boolean checkParent(Photo photo, int profileId) {
+        return photo.getProfile().getId() == profileId;
     }
 }

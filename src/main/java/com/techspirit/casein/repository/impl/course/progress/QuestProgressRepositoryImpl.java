@@ -1,29 +1,40 @@
 package com.techspirit.casein.repository.impl.course.progress;
 
+import com.techspirit.casein.model.course.progress.CourseProgress;
 import com.techspirit.casein.model.course.progress.QuestProgress;
 import com.techspirit.casein.repository.api.course.progress.QuestProgressRepository;
+import com.techspirit.casein.repository.impl.AbstractDependentRepository;
+import com.techspirit.casein.repository.impl.course.progress.crud.CrudCourseProgressRepository;
+import com.techspirit.casein.repository.impl.course.progress.crud.CrudQuestProgressRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class QuestProgressRepositoryImpl implements QuestProgressRepository {
+@Repository
+public class QuestProgressRepositoryImpl extends AbstractDependentRepository<QuestProgress, CourseProgress>
+                                            implements QuestProgressRepository {
+    private final CrudQuestProgressRepository crudRepository;
 
-    @Override
-    public QuestProgress save(QuestProgress questProgress, int courseProgressId) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(int id, int courseProgressId) {
-        return false;
-    }
-
-    @Override
-    public QuestProgress get(int id, int courseProgressId) {
-        return null;
+    @Autowired
+    public QuestProgressRepositoryImpl(CrudQuestProgressRepository crudRepository,
+                                       CrudCourseProgressRepository crudCourseProgressRepository) {
+        super(crudRepository, crudCourseProgressRepository);
+        this.crudRepository = crudRepository;
     }
 
     @Override
     public List<QuestProgress> getAll(int courseProgressId) {
-        return null;
+        return crudRepository.getAll(courseProgressId);
+    }
+
+    @Override
+    protected void setParent(QuestProgress questProgress, CourseProgress courseProgress) {
+        questProgress.setCourseProgress(courseProgress);
+    }
+
+    @Override
+    protected boolean checkParent(QuestProgress questProgress, int courseProgressId) {
+        return questProgress.getCourseProgress().getId() == courseProgressId;
     }
 }

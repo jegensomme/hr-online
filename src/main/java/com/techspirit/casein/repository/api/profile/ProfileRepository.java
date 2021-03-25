@@ -1,19 +1,10 @@
 package com.techspirit.casein.repository.api.profile;
 
 import com.techspirit.casein.model.profile.Profile;
+import com.techspirit.casein.repository.api.Repository;
 
 import java.util.List;
 
-public interface ProfileRepository {
-
-    // null if not found, when updated
-    Profile save(Profile profile);
-
-    // false if not found
-    boolean delete(int id);
-
-    // null if not found
-    Profile get(int id);
-
+public interface ProfileRepository extends Repository<Profile> {
     List<Profile> getAll();
 }

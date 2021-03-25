@@ -1,15 +1,7 @@
 package com.techspirit.casein.repository.api.profile;
 
 import com.techspirit.casein.model.profile.Photo;
+import com.techspirit.casein.repository.api.DependentRepository;
 
-public interface PhotoRepository {
-
-    // null if not found, when updated
-    Photo save(Photo photo, int profileId);
-
-    // false if not found
-    boolean delete(int id, int profileId);
-
-    // null if not found
-    Photo get(int id, int profileId);
+public interface PhotoRepository extends DependentRepository<Photo> {
 }

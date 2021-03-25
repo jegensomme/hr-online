@@ -1,19 +1,10 @@
 package com.techspirit.casein.repository.api.profile;
 
 import com.techspirit.casein.model.profile.Position;
+import com.techspirit.casein.repository.api.Repository;
 
 import java.util.List;
 
-public interface PositionRepository {
-
-    // null if not found, when updated
-    Position save(Position position);
-
-    // false if not found
-    boolean delete(int id);
-
-    // null if not found
-    Position get(int id);
-
+public interface PositionRepository extends Repository<Position> {
     List<Position> getAll();
 }

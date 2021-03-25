@@ -1,19 +1,10 @@
 package com.techspirit.casein.repository.api.course;
 
 import com.techspirit.casein.model.course.Quest;
+import com.techspirit.casein.repository.api.DependentRepository;
 
 import java.util.List;
 
-public interface QuestRepository {
-
-    // null if not found, when updated
-    Quest save(Quest quest, int courseId);
-
-    // false if not found
-    boolean delete(int id, int courseId);
-
-    // null if not found
-    Quest get(int id, int courseId);
-
+public interface QuestRepository extends DependentRepository<Quest> {
     List<Quest> getAll(int courseId);
 }

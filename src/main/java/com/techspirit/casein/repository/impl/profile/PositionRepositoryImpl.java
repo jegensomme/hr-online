@@ -2,28 +2,24 @@ package com.techspirit.casein.repository.impl.profile;
 
 import com.techspirit.casein.model.profile.Position;
 import com.techspirit.casein.repository.api.profile.PositionRepository;
+import com.techspirit.casein.repository.impl.AbstractRepository;
+import com.techspirit.casein.repository.impl.profile.crud.CrudPositionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class PositionRepositoryImpl implements PositionRepository {
+@Repository
+public class PositionRepositoryImpl extends AbstractRepository<Position> implements PositionRepository {
 
-    @Override
-    public Position save(Position position) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
-    public Position get(int id) {
-        return null;
+    @Autowired
+    public PositionRepositoryImpl(CrudPositionRepository crudRepository) {
+        super(crudRepository);
     }
 
     @Override
     public List<Position> getAll() {
-        return null;
+        return crudRepository.findAll();
     }
+
 }

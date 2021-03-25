@@ -1,29 +1,40 @@
 package com.techspirit.casein.repository.impl.course;
 
 import com.techspirit.casein.model.course.Answer;
+import com.techspirit.casein.model.course.Question;
 import com.techspirit.casein.repository.api.course.AnswerRepository;
+import com.techspirit.casein.repository.impl.AbstractDependentRepository;
+import com.techspirit.casein.repository.impl.course.crud.CrudAnswerRepository;
+import com.techspirit.casein.repository.impl.course.crud.CrudQuestionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class AnswerRepositoryImpl implements AnswerRepository {
+@Repository
+public class AnswerRepositoryImpl extends AbstractDependentRepository<Answer, Question> implements AnswerRepository {
 
-    @Override
-    public Answer save(Answer answer, int questionId) {
-        return null;
-    }
+    private final CrudAnswerRepository crudRepository;
 
-    @Override
-    public boolean delete(int id, int questionId) {
-        return false;
-    }
-
-    @Override
-    public Answer get(int id, int questionId) {
-        return null;
+    @Autowired
+    public AnswerRepositoryImpl(CrudAnswerRepository crudRepository,
+                                CrudQuestionRepository crudQuestionRepository) {
+        super(crudRepository, crudQuestionRepository);
+        this.crudRepository = crudRepository;
     }
 
     @Override
     public List<Answer> getAll(int questionId) {
-        return null;
+        return crudRepository.getAll(questionId);
+    }
+
+    @Override
+    protected void setParent(Answer answer, Question question) {
+        answer.setQuestion(question);
+    }
+
+    @Override
+    protected boolean checkParent(Answer answer, int questionId) {
+        return answer.getQuestion().getId() == questionId;
     }
 }

@@ -2,21 +2,23 @@ package com.techspirit.casein.repository.impl.course;
 
 import com.techspirit.casein.model.course.Course;
 import com.techspirit.casein.repository.api.course.CourseRepository;
+import com.techspirit.casein.repository.impl.AbstractRepository;
+import com.techspirit.casein.repository.impl.course.crud.CrudCourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class CourseRepositoryImpl implements CourseRepository {
+import java.util.List;
 
-    @Override
-    public Course save(Course course) {
-        return null;
+@Repository
+public class CourseRepositoryImpl extends AbstractRepository<Course> implements CourseRepository {
+
+    @Autowired
+    public CourseRepositoryImpl(CrudCourseRepository crudRepository) {
+        super(crudRepository);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
-    public Course get(int id) {
-        return null;
+    public List<Course> getAll() {
+        return crudRepository.findAll();
     }
 }
