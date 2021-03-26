@@ -72,16 +72,16 @@ Users
 
 /*id=100008*/
 INSERT INTO users (name, link, profile_id)
-    VALUES ('artem', '/100007', 100004);
+    VALUES ('artem', '/100008', 100004);
 /*id=100009*/
 INSERT INTO users (name, link, profile_id)
-    VALUES ('anastasiya', '/100010', 100005);
+    VALUES ('anastasiya', '/100009', 100005);
 /*id=100010*/
 INSERT INTO users (name, link, profile_id)
-    VALUES ('vitovt', '/100008', 100006);
+    VALUES ('vitovt', '/100010', 100006);
 /*id=100011*/
 INSERT INTO users (name, link, profile_id)
-    VALUES ('vitaliy', '/100009', 100007);
+    VALUES ('vitaliy', '/100011', 100007);
 
 /********************
 /Users
