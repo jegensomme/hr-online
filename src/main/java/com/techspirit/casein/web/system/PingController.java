@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PingController {
     @CrossOrigin
     @GetMapping(value = "/ping")
-    public ResponseEntity<?> read ()
-    {
+    public ResponseEntity<?> read () {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
