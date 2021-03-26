@@ -1,4 +1,4 @@
-package com.techspirit.casein.web.course.progress;
+package com.techspirit.casein.web.progress;
 
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
