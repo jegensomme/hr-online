@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @ToString(callSuper = true)
 public class PageProgress extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "quest_progress_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private QuestProgress questProgress;
