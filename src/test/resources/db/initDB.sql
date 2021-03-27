@@ -29,11 +29,11 @@ CREATE TABLE positions
 CREATE TABLE profiles
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name             VARCHAR                     NOT NULL,
-    entry_date       DATE    DEFAULT date(now()) NOT NULL,
-    email            VARCHAR                     NOT NULL,
-    position_id      INTEGER                     NOT NULL,
-    FOREIGN KEY (position_id)      REFERENCES positions      (id) ON DELETE CASCADE,
+    name             VARCHAR               NOT NULL,
+    entry_date       DATE    DEFAULT TODAY NOT NULL,
+    email            VARCHAR               NOT NULL,
+    position_id      INTEGER               NOT NULL,
+    FOREIGN KEY (position_id) REFERENCES positions (id) ON DELETE CASCADE,
     CONSTRAINT profiles_unique_email_idx UNIQUE (email)
 );
 
