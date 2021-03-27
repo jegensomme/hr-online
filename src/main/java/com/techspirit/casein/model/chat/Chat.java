@@ -17,12 +17,12 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Chat extends BaseEntity {
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @NotNull
     private User user;
 
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
     @OrderBy(value = "dateTime DESC")
     private List<ChatMessage> messages;
 }

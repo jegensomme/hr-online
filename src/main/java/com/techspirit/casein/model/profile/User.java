@@ -32,7 +32,7 @@ public class User extends NamedEntity {
     @NotNull
     private LocalDateTime registered;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Profile profile;
