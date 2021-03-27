@@ -35,7 +35,7 @@ public class CourseProgress extends BaseEntity {
     @Range(min = 0, max = 100)
     private int value;
 
-    @OneToMany(mappedBy = "progress")
+    @OneToMany(mappedBy = "courseProgress")
     private List<QuestProgress> questProgresses;
 
 }

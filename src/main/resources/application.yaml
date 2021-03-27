@@ -6,16 +6,16 @@ spring:
       #  http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
       hibernate:
         format_sql: true
-        #default_batch_fetch_size: 20
-        # https://stackoverflow.com/questions/21257819/what-is-the-difference-between-hibernate-jdbc-fetch-size-and-hibernate-jdbc-batc
-        #jdbc.batch_size: 20
+        default_batch_fetch_size: 20
+         # https://stackoverflow.com/questions/21257819/what-is-the-difference-between-hibernate-jdbc-fetch-size-and-hibernate-jdbc-batc
+        jdbc.batch_size: 20
   datasource:
 #    # local
 #    url: jdbc:postgresql://localhost:5432/hr-online
 #    username: user
 #    password: password
     # heroku
-    url: postgres://xgkjqqogzxbzfi:9a190dd101d7a1815d4b2419aeffb16bafe527113e91764cf7575c771534e468@ec2-54-155-226-153.eu-west-1.compute.amazonaws.com:5432/d89icg3l4rjl4i
+    url: jdbc:postgresql://ec2-54-155-226-153.eu-west-1.compute.amazonaws.com:5432/d89icg3l4rjl4i
     username: xgkjqqogzxbzfi
     password: 9a190dd101d7a1815d4b2419aeffb16bafe527113e91764cf7575c771534e468
 
@@ -31,7 +31,7 @@ spring:
 logging:
   level:
     root: WARN
-    ru.javaops.bootjava: DEBUG
+    com.techspirit.casein: DEBUG
 #    org.springframework.security.web.FilterChainProxy: DEBUG
 
 server.servlet:

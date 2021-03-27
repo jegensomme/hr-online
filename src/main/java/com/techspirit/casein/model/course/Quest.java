@@ -23,11 +23,11 @@ public class Quest extends NamedEntity {
     @NotNull
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "quest")
+    @OneToMany(mappedBy = "quest")
     @OrderBy(value = "order ASC")
     private List<Page> pages;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "quest")
+    @OneToMany(mappedBy = "quest")
     @OrderBy(value = "order ASC")
     private List<Question> questions;
 

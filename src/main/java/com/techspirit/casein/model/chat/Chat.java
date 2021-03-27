@@ -22,7 +22,7 @@ public class Chat extends BaseEntity {
     @NotNull
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "chat")
+    @OneToMany(mappedBy = "receiver")
     @OrderBy(value = "dateTime DESC")
     private List<ChatMessage> messages;
 }

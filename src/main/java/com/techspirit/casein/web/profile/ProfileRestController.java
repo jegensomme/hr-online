@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @Slf4j
 @Api(tags="Profile controller")
-public class ProfileController {
+public class ProfileRestController {
 }
