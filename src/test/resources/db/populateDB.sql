@@ -133,7 +133,7 @@ INSERT INTO quests (course_id, name, description)
 /*id=100018*/
 INSERT INTO quests (course_id, name, description)
     VALUES (100012, 'Правила внутреннего распорядка', '');
-
+ALTER SEQUENCE quest_seq RESTART WITH 1;
 /********************
 /Quests
 *********************/
@@ -145,21 +145,27 @@ Questions
 /*id=100019*/
 INSERT INTO questions (quest_id, text)
     VALUES (100013, 'Вопрос об истории компании');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 /*id=100020*/
 INSERT INTO questions (quest_id, text)
     VALUES (100014, 'Вопрос о компании ');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 /*id=100021*/
 INSERT INTO questions (quest_id, text)
     VALUES (100015, 'Вопрос о деятельности компании');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 /*id=100022*/
 INSERT INTO questions (quest_id, text)
     VALUES (100016, 'Вопрос о миссии и ценностях компании');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 /*id=100023*/
 INSERT INTO questions (quest_id, text)
     VALUES (100017, 'Вопрос о корпоративной жизни');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 /*id=100024*/
 INSERT INTO questions (quest_id, text)
     VALUES (100018, 'Вопрос о правилах внутреннего распорядка');
+ALTER SEQUENCE question_seq RESTART WITH 1;
 
 /********************
 /Questions
@@ -225,42 +231,42 @@ INSERT INTO pages (quest_id, title, text)
 /*id=100038*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100013, 'История компании часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /*id=100039*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100014, '«Росатом» сегодня часть 1', '');
 /*id=100040*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100014, '«Росатом» сегодня часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /*id=100041*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100015, 'Деятельность компании часть 1', '');
 /*id=100042*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100015, 'Деятельность компании часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /*id=100043*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100016, 'Миссия и ценности компании часть 1', '');
 /*id=100044*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100016, 'Миссия и ценности компании часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /*id=100045*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100017, 'Корпоративная жизнь часть 1', '');
 /*id=100046*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100017, 'Корпоративная жизнь часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /*id=100047*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100018, 'Правила внутреннего распорядка часть 1', '');
 /*id=100048*/
 INSERT INTO pages (quest_id, title, text)
     VALUES (100018, 'Правила внутреннего распорядка часть 2', '');
-
+ALTER SEQUENCE page_seq RESTART WITH 1;
 /********************
 /Pages
 *********************/
