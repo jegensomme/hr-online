@@ -40,6 +40,6 @@ public class User extends NamedEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private CourseProgress courseProgress;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private Chat chat;
 }
