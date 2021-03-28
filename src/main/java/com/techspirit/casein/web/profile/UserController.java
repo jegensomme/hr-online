@@ -1,21 +1,17 @@
 package com.techspirit.casein.web.profile;
 
+import com.techspirit.casein.AuthUser;
 import com.techspirit.casein.model.profile.User;
-import com.techspirit.casein.service.prototype.profile.ServiceUser;
+import com.techspirit.casein.service.impl.profile.UserService;
 import com.techspirit.casein.util.ValidationUtil;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -24,48 +20,26 @@ import java.util.List;
 @Api(tags="User controller")
 public class UserController {
 
-    private final ServiceUser service;
+    private final UserService userService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<User> getAll() {
-        log.info("getAll");
-        return service.readALL();
+    public User get() {
+        log.info("get {}", AuthUser.id());
+        return userService.read(AuthUser.id());
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@PathVariable int id) {
-        log.info("get {}", id);
-        return service.read(id);
-    }
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        log.info("delete {}", id);
-        service.delete(id);
+    public void delete() {
+        log.info("delete {}", AuthUser.id());
+        userService.delete(AuthUser.id());
     }
 
-    @PostMapping(consumes = MediaTypes.HAL_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<User> create(@Valid @RequestBody User user) {
-        log.info("register {}", user);
-        ValidationUtil.checkNew(user);
-        user = service.create(user);
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/user")
-                .build().toUri();
-        return ResponseEntity.created(uriOfNewResource).body(user);
-    }
-
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable int id, @Valid @RequestBody User user) {
-        log.info("update {} to {}", id, user);
-        User oldUser = service.read(id);
-        ValidationUtil.assureIdConsistent(user, oldUser.id());
-        if (user.getLink() == null) {
-            user.setLink(oldUser.getLink());
-        }
-        service.update(user, id);
+    public void update(@Valid @RequestBody User user) {
+        log.info("update {} to {}", AuthUser.id(), user);
+        ValidationUtil.assureIdConsistent(user, AuthUser.id());
+        userService.update(user, AuthUser.id());
     }
 }
