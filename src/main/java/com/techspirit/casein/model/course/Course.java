@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.NamedEntity;
 import com.techspirit.casein.model.profile.Position;
 import lombok.*;
@@ -22,10 +23,12 @@ public class Course extends NamedEntity {
     @NotNull
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     @OrderBy(value = "order ASC")
     private List<Quest> quests;
 
+    @JsonIgnore
     @OneToMany
     @JoinTable(
             name = "course_positions",

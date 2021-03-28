@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.BaseEntity;
 import com.techspirit.casein.model.NamedEntity;
 import lombok.*;
@@ -22,6 +23,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Page extends BaseEntity {
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quest_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.course.progress;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.BaseEntity;
 import com.techspirit.casein.model.course.Page;
 import lombok.*;
@@ -18,7 +19,8 @@ import javax.validation.constraints.NotNull;
 @ToString(callSuper = true)
 public class PageProgress extends BaseEntity {
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quest_progress_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private QuestProgress questProgress;

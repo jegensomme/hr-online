@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -20,6 +21,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Question extends BaseEntity {
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quest_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

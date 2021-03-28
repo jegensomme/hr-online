@@ -1,8 +1,8 @@
 package com.techspirit.casein.model.course.progress;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.BaseEntity;
 import com.techspirit.casein.model.course.Course;
-import com.techspirit.casein.model.course.Quest;
 import com.techspirit.casein.model.profile.User;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -21,7 +21,8 @@ import java.util.List;
 @ToString(callSuper = true)
 public class CourseProgress extends BaseEntity {
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
@@ -35,6 +36,7 @@ public class CourseProgress extends BaseEntity {
     @Range(min = 0, max = 100)
     private int value;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "courseProgress")
     private List<QuestProgress> questProgresses;
 

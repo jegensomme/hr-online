@@ -1,6 +1,7 @@
 package com.techspirit.casein.config;
 
-import com.techspirit.casein.web.json.JacksonObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -14,7 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         for (HttpMessageConverter<?> converter : converters) {
             if (converter instanceof org.springframework.http.converter.json.MappingJackson2HttpMessageConverter) {
-                ((MappingJackson2HttpMessageConverter) converter).setObjectMapper(JacksonObjectMapper.getMapper());
+                ObjectMapper mapper = ((MappingJackson2HttpMessageConverter) converter).getObjectMapper();
+                mapper.registerModule(new Hibernate5Module());
             }
         }
     }

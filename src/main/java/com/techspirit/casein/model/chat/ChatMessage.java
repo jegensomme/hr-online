@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 public class ChatMessage extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "receiver_id")
     private Chat receiver;
 

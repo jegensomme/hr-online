@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.profile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.chat.Chat;
 import com.techspirit.casein.model.course.progress.CourseProgress;
 import com.techspirit.casein.model.NamedEntity;
@@ -32,14 +33,17 @@ public class User extends NamedEntity {
     @NotNull
     private LocalDateTime registered;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Profile profile;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private CourseProgress courseProgress;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private Chat chat;
 }

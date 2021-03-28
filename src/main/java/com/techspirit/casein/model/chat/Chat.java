@@ -1,5 +1,6 @@
 package com.techspirit.casein.model.chat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.techspirit.casein.model.BaseEntity;
 import com.techspirit.casein.model.profile.User;
 import lombok.*;
@@ -17,12 +18,14 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Chat extends BaseEntity {
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @NotNull
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+    @JsonIgnore
+    @OneToMany(mappedBy = "receiver")
     @OrderBy(value = "dateTime DESC")
     private List<ChatMessage> messages;
 }
