@@ -793,6 +793,71 @@ INSERT INTO page_progresses (quest_progress_id, page_id)
 /PageProgresses
 *********************/
 
+/********************
+Chats
+*********************/
+
+/*id=100078*/
+INSERT INTO chats (user_id) VALUES (100008);
+/*id=100079*/
+INSERT INTO chats (user_id) VALUES (100009);
+/*id=100080*/
+INSERT INTO chats (user_id) VALUES (100010);
+/*id=100081*/
+INSERT INTO chats (user_id) VALUES (100011);
+
+/********************
+/Chats
+*********************/
+
+/********************
+ChatMessages
+*********************/
+
+/*id=100082*/
+INSERT INTO chat_messages (receiver_id, message, date_time)
+VALUES (100078, 'Здравствуйте! Поздравляем Вас с началом курса!', '2021-03-24 10:00:34');
+
+/*id=100083*/
+INSERT INTO chat_messages (receiver_id, message, date_time)
+VALUES (100079, 'Здравствуйте! Поздравляем Вас с началом курса!', '2021-03-24 10:00:34');
+
+/*id=100084*/
+INSERT INTO chat_messages (receiver_id, message, date_time)
+VALUES (100080, 'Здравствуйте! Поздравляем Вас с началом курса!', '2021-03-24 10:00:34');
+
+/*id=100085*/
+INSERT INTO chat_messages (receiver_id, message, date_time)
+VALUES (100081, 'Здравствуйте! Поздравляем Вас с началом курса!', '2021-03-24 10:00:34');
+
+-- /*id=100082*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Здравствуйте! Поздравляем Вас с началом курса!', '2021-03-24 10:00:34');
+-- /*id=100083*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли квест "История компании"!', '2021-03-24 15:45:54');
+-- /*id=100084*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли квест "«Росатом» сегодня"!', '2021-03-25 12:25:23');
+-- /*id=100085*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли квест "Структура и деятельность компании"!', '2021-03-25 18:34:43');
+-- /*id=100086*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли квест "Миссия и ценности компании"!', '2021-03-26 14:23:45');
+-- /*id=100087*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли квест "Единая цифровая стратегия ГК «РосАтом»"!', '2021-03-26 19:54:24');
+-- /*id=100087*/
+-- INSERT INTO chat_messages (receiver_id, message, date_time)
+--     VALUES (100078, 'Поздравляем, вы успешно прошли Вводный курс', '2021-03-26 19:54:32');
+
+/********************
+/Chats
+*********************/
+
+
+
 
 
 
