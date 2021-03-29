@@ -1,7 +1,7 @@
 package com.techspirit.casein.web.controller.profile;
 
 import com.techspirit.casein.model.profile.Profile;
-import com.techspirit.casein.service.impl.profile.ProfileService;
+import com.techspirit.casein.service.profile.ProfileService;
 import com.techspirit.casein.util.exception.NotFoundException;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.techspirit.casein.web.controller.progress;
 
 import com.techspirit.casein.model.course.progress.CourseProgress;
-import com.techspirit.casein.service.impl.progress.CourseProgressService;
+import com.techspirit.casein.service.progress.CourseProgressService;
 import com.techspirit.casein.util.exception.NotFoundException;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/users/{userId}/progresses")
+@RequestMapping("/{userId}/progresses")
 @AllArgsConstructor
 @Slf4j
 @Api(tags="CourseProgress controller")

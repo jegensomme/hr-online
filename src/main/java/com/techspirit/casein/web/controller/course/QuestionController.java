@@ -1,7 +1,7 @@
 package com.techspirit.casein.web.controller.course;
 
 import com.techspirit.casein.model.course.Question;
-import com.techspirit.casein.service.impl.course.QuestionService;
+import com.techspirit.casein.service.course.QuestionService;
 import com.techspirit.casein.util.exception.NotFoundException;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

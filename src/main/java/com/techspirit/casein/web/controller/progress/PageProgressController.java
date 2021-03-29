@@ -1,7 +1,7 @@
 package com.techspirit.casein.web.controller.progress;
 
 import com.techspirit.casein.model.course.progress.PageProgress;
-import com.techspirit.casein.service.impl.progress.PageProgressService;
+import com.techspirit.casein.service.progress.PageProgressService;
 import com.techspirit.casein.util.exception.NotFoundException;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
