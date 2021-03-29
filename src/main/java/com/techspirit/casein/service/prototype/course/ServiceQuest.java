@@ -1,6 +1,7 @@
 package com.techspirit.casein.service.prototype.course;
 
 import com.techspirit.casein.model.course.Quest;
+import com.techspirit.casein.util.exception.NotFoundException;
 
 
 public interface ServiceQuest {
@@ -9,5 +10,5 @@ public interface ServiceQuest {
      * @param id - id квеста
      * @return - квест с заданным ID
      */
-    Quest read(int id, int courseId);
+    Quest read(int id, int courseId) throws NotFoundException;
 }

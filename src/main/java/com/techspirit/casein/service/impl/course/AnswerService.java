@@ -3,6 +3,7 @@ package com.techspirit.casein.service.impl.course;
 import com.techspirit.casein.model.course.Answer;
 import com.techspirit.casein.repository.api.course.AnswerRepository;
 import com.techspirit.casein.service.prototype.course.ServiceAnswer;
+import com.techspirit.casein.util.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class AnswerService implements ServiceAnswer {
     private final AnswerRepository repository;
 
     @Override
-    public Answer read(int id, int questionId){
+    public Answer read(int id, int questionId) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id, questionId), id);
     }
 }

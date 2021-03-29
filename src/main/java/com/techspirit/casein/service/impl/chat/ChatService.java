@@ -6,6 +6,7 @@ import com.techspirit.casein.service.prototype.chat.ServiceChat;
 
 import static com.techspirit.casein.util.ValidationUtil.checkNotFoundWithId;
 
+import com.techspirit.casein.util.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class ChatService implements ServiceChat {
     private final ChatRepository repository;
 
     @Override
-    public Chat read(int id, int userId) {
+    public Chat read(int id, int userId) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id, userId), id);
     }
 }

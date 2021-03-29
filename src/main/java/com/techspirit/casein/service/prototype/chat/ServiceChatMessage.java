@@ -1,6 +1,7 @@
 package com.techspirit.casein.service.prototype.chat;
 
 import com.techspirit.casein.model.chat.ChatMessage;
+import com.techspirit.casein.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -23,18 +24,18 @@ public interface ServiceChatMessage {
      * @param chatId - ID чата
      * @return - сообщение с заданным ID
      */
-    ChatMessage read(int id, int chatId);
+    ChatMessage read(int id, int chatId) throws NotFoundException;
     /**
      * Обновляет пользователя с заданным ID,
      * в соответствии с переданным пользователем
      * @param chatMessage - обновляемое сообщение
      * @param chatId - ID чата, в котором нужно обновить сообщение
      */
-    void update(ChatMessage chatMessage, int chatId);
+    void update(ChatMessage chatMessage, int chatId) throws NotFoundException;
     /**
      * Удаляет сообщение с заданным ID
      * @param id - ID удаляемого сообщения
      * @param chatId - ID чата
      */
-    void delete(int id, int chatId);
+    void delete(int id, int chatId) throws NotFoundException;
 }

@@ -4,6 +4,7 @@ import com.techspirit.casein.model.chat.ChatMessage;
 import com.techspirit.casein.repository.api.chat.ChatMessageRepository;
 import com.techspirit.casein.service.prototype.chat.ServiceChatMessage;
 
+import com.techspirit.casein.util.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -30,17 +31,17 @@ public class ChatMessageService implements ServiceChatMessage {
     }
 
     @Override
-    public ChatMessage read(int id, int chatId) {
+    public ChatMessage read(int id, int chatId) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id, chatId), id);
     }
 
     @Override
-    public void update(ChatMessage chatMessage, int chatId) {
+    public void update(ChatMessage chatMessage, int chatId) throws NotFoundException {
         checkNotFoundWithId(repository.save(chatMessage, chatId), chatMessage.id());
     }
 
     @Override
-    public void delete(int id, int chatId) {
+    public void delete(int id, int chatId) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id, chatId), id);
     }
 }

@@ -3,6 +3,7 @@ package com.techspirit.casein.service.impl.profile;
 import com.techspirit.casein.model.profile.User;
 import com.techspirit.casein.repository.api.profile.UserRepository;
 import com.techspirit.casein.service.prototype.profile.ServiceUser;
+import com.techspirit.casein.util.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -28,17 +29,17 @@ public class UserService implements ServiceUser {
     }
 
     @Override
-    public User read(int id) {
+    public User read(int id) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
-    public void update(User user, int id) {
+    public void update(User user, int id) throws NotFoundException {
         checkNotFoundWithId(repository.save(user), id);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);
     }
 

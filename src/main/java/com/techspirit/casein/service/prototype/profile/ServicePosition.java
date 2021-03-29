@@ -1,6 +1,7 @@
 package com.techspirit.casein.service.prototype.profile;
 
 import com.techspirit.casein.model.profile.Position;
+import com.techspirit.casein.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -20,15 +21,15 @@ public interface ServicePosition {
      * @param id - id должности
      * @return - должность с заданным ID
      */
-    Position read(int id);
+    Position read(int id) throws NotFoundException;
     /**
      * Обновляет должность с заданным ID,
      * в соответствии с переданной должностью
      * @param position - должность, в соответсвии с которой нужно обновить данные
      */
-    void update(Position position, int id);
+    void update(Position position, int id) throws NotFoundException;
     /**
      * Удаляет должность с заданным ID
      */
-    void delete(int id);
+    void delete(int id) throws NotFoundException;
 }
