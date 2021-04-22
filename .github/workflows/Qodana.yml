@@ -1,0 +1,11 @@
+name: Qodana - Code Inspection
+  # You may pin to the exact commit or the version.
+  # uses: JetBrains/qodana-action@4b9ea1e815b8c160754b409783dc4b799fb9ae00
+  uses: JetBrains/qodana-action@v2.0-eap
+  with:
+    # Project folder to inspect
+    project-dir: # optional, default is ${{ github.workspace }}
+    # Save results to folder
+    results-dir: # optional, default is ${{ github.workspace }}/qodana
+    # Save cache to folder
+    cache-dir: # optional, default is /home/runner/work/_temp/_github_home/qodana-cache
